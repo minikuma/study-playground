@@ -1,4 +1,4 @@
-package me.minikuma.singleton;
+package me.minikuma._01_creational_patterns._01_singleton;
 
 import java.time.LocalTime;
 import java.util.concurrent.ExecutorService;

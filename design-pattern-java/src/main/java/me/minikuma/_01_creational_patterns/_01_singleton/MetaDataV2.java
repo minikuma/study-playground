@@ -1,4 +1,4 @@
-package me.minikuma.singleton;
+package me.minikuma._01_creational_patterns._01_singleton;
 
 /**
  * Thread-Safe 한 방법 (synchronized)

@@ -1,4 +1,4 @@
-package me.minikuma.singleton;
+package me.minikuma._01_creational_patterns._01_singleton;
 
 /**
  * Meta Data 를 Singleton 으로 만든다. (일반적 방법)

@@ -1,4 +1,4 @@
-package me.minikuma.singleton;
+package me.minikuma._01_creational_patterns._01_singleton;
 
 /**
  * 이른 초기화 (eager initialization)
