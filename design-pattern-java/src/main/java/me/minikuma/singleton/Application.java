@@ -12,7 +12,7 @@ public class Application {
 
         for (int i = 0; i < 30; i++) {
             executorService.execute(() -> {
-                MetaDataV4 mv1 = MetaDataV4.getInstance();
+                MetaDataV5 mv1 = MetaDataV5.getInstance();
                 System.out.println("객체 생성 : " + Thread.currentThread().getName() + " | " +mv1);
             });
         }
