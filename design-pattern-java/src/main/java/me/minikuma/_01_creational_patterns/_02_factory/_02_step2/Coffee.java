@@ -1,4 +1,4 @@
-package me.minikuma._01_creational_patterns._02_factory._01_step1;
+package me.minikuma._01_creational_patterns._02_factory._02_step2;
 
 public class Coffee {
     private String coffeeBean;
