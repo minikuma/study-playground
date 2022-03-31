@@ -11,6 +11,7 @@ public interface CoffeeFactory {
     }
 
     Coffee createCoffee();
+    void sendToCoffee(String coffeeBean, String type);
 
     private void validate(String coffeeBean, String type) {
         if (coffeeBean == null || coffeeBean.isBlank()) {
@@ -24,9 +25,5 @@ public interface CoffeeFactory {
 
     private void prepareFor(String coffeeBean, String type) {
         System.out.println(coffeeBean + ", " + type + " 를 만들고 있습니다.");
-    }
-
-    private void sendToCoffee(String coffeeBean, String type) {
-        System.out.println(coffeeBean + ", " + type + " 준비 되었습니다.");
     }
 }

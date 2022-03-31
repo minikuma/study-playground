@@ -1,9 +1,9 @@
 package me.minikuma._01_creational_patterns._02_factory._02_step2;
 
-public class MegaCoffee extends Coffee {
-    public MegaCoffee() {
+public class Americano extends Coffee {
+    public Americano() {
         setCoffeeBean("케냐AA");
         setAroma("다크");
-        setType("ICE");
+        setType("아메리카노");
     }
 }

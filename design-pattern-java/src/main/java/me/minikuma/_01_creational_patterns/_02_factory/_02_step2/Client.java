@@ -4,8 +4,8 @@ public class Client {
     public static void main(String[] args) {
 
         Client client = new Client();
-        client.print(new StarbucksFactory(), "인도네시아", "HOT");
-        client.print(new MegaCoffeeFactory(), "케냐AA", "ICE");
+        client.print(new LatteFactory(), "인도네시아", "HOT");
+        client.print(new AmericanoFactory(), "케냐AA", "ICE");
     }
 
     private void print(CoffeeFactory coffeeFactory, String coffeeBean, String type) {
