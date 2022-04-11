@@ -23,4 +23,17 @@ Java 예제를 통해 살펴보는 Design Pattern 인프런 강좌 (디자인 �
   * 어디에서 쓰일까?
     * ```DocumentBuilderFactory```
     * ```FactoryBean```
+* Builder Pattern
+  * 복잡한 객체를 생성할 때 정의된 프로세스대로 만들 수 있다. (객체 생성 순서 제어)
+  * 객체의 생성 과정을 숨길 수 있다. (클라이언트 코드는 심플하게 가져갈 수 있다)
+  * 불안정한 객체 생성을 막을 수 있다.
+  * 같은 객체지만 여러 빌더 프로세스를 통해 다양한 인스턴스를 만들어 낼 수 있다.
+  * (단점)
+    * 객체의 양이 많아질 수 있다.
+    * 구조가 복잡해 질 수 있다.
+  * 어디서 쓰일까?
+    * ```StringBuffer```, ```StringBuilder```
+    * ```Stream``` API 중 ```Steam.Builder```, ```SteamBuilder```
+    * Lombok 의 ```@Builder``` Annotation
+    * ````UriComponents````
 ---
