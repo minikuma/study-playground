@@ -110,4 +110,5 @@ Java 예제를 통해 살펴보는 Design Pattern 인프런 강좌 (디자인 �
   * 어디에서 사용할까?
     * ```Collection``` -> ```checkedList``` 메소드, ```syncronized``` 메소드, ```unmodified``` 메소드
     * ```HttpServletRequestWrapper```, ```HttpServletResponseWrapper```
+    * ```ServerHttpRequestDecorator```, ```ServerHttpResponseDecorator``` (WebFlex HTTP 요청)
 ---
