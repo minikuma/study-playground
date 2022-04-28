@@ -111,4 +111,14 @@ Java 예제를 통해 살펴보는 Design Pattern 인프런 강좌 (디자인 �
     * ```Collection``` -> ```checkedList``` 메소드, ```syncronized``` 메소드, ```unmodified``` 메소드
     * ```HttpServletRequestWrapper```, ```HttpServletResponseWrapper```
     * ```ServerHttpRequestDecorator```, ```ServerHttpResponseDecorator``` (WebFlex HTTP 요청)
+  * Facade Pattern
+    * 복잡한 서브 시스템 의존성을 최소화하는 방법
+    * 클라이언트가 사용해야 하는 복잡한 서브 시스템 의존성을 간단한 인터페이스로 추상화할 수 있다.
+    * (장점)
+      * 서브 시스템의 의존성을 한곳으로 모아 놓을 수 있다.
+    * (단점)
+      * 파사드 클래스가 서브 시스템에 대한 모든 의존성을 가지게 된다.
+    * 어디서 사용할까?
+      * ```PlatformTransactionManager``` (구체적인 기술을 뒤로 감추는 시각에서 본다면...)
+      * ```MailSender```
 ---
