@@ -261,4 +261,16 @@ Java 예제를 통해 살펴보는 Design Pattern 인프런 강좌 (디자인 �
     * ```WebSecurityConfigurerAdapter```
     * ```JdbcTemplate```: Template Callback Pattern
     * ```RestTemplate```: Template Callback Pattern
+* Visitor Pattern
+  * 기존 코드를 변경하지 않고 새로운 기능을 추가하는 방법
+  * 더블 디스패치 (Double Dispatch)를 활용할 수 있다.
+  * (장점)
+    * 기존 코드를 수정하지 않고 새로운 기능을 추가할 수 있다. 
+  * (단점)
+    * 구조가 복잡하다.
+  * 어디서 사용할까?
+    * ```FileVisitor```, ```SimpleFileVisitor```
+    * ```AnnotationValueVistor```
+    * ```ElementVisitor```
+    * ```BeanDefinitionVisitor``` (지금은 거의 사용하지 않음, 스프링 내부에서 사용)
 ---
