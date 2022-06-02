@@ -1,9 +1,14 @@
 package me.minikuma._01_item01;
 
+import java.util.Arrays;
+import java.util.EnumSet;
+
 public class Order {
     private boolean prime;
     private boolean urgent;
     private Product product;
+
+    private OrderStatus orderStatus;
 
     public Order() {
         // default constructor
@@ -21,5 +26,14 @@ public class Order {
         order.urgent = true;
         order.product = product;
         return order;
+    }
+
+    public static void main(String[] args) {
+        OrderStatus[] orderStatuses = OrderStatus.values();
+        Arrays.stream(orderStatuses).forEach(System.out::println);
+        Order order = new Order();
+        if (order.orderStatus == OrderStatus.DELIVERED) {
+            System.out.println("delivered");
+        }
     }
 }
