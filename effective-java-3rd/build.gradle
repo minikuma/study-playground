@@ -16,7 +16,7 @@ repositories {
 }
 
 bootJar {
-    enabled = false
+    enabled = true
 }
 
 jar {
@@ -26,6 +26,7 @@ jar {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+//    implementation 'me.minikuma.hello:chinese-hello-service:0.0.1-SNAPSHOT'
 }
 
 publishing {

@@ -1,4 +1,4 @@
-package me.minikuma._01_item01;
+package me.minikuma.item01;
 
 public class Settings {
     private boolean useAutoSteering;

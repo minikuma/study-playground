@@ -1,7 +1,6 @@
-package me.minikuma._01_item01;
+package me.minikuma.item01;
 
 import java.util.Arrays;
-import java.util.EnumSet;
 
 public class Order {
     private boolean prime;
