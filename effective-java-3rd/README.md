@@ -106,4 +106,17 @@ Effective Java 인프런 백기선님, 강의와 Effective Java 3판 책을 스�
 * 문자열: ```new``` 를 사용하지 않고 리터럴로 사용하여 기존에 문자열 재사용
 * 정규식, Pattern: 캐싱하여 재 사용
 * 오토 박싱: 기본 타입과, 박싱 타입을 섞어서 사용하면 불필요한 객체 생성 발생할 수 있음
+* 책에서는 어떻게 나와 있을까?
+  * p31, 사용을 권장하지 않는 API (Deprecation)
+    * ```@Deprecated```: 컴파일 시 경고 메시지를 통해 클라이언트에 공지
+    * ```@deprecated```: 문서화에서 사용
+  * p32, 정규 표현식
+  * p32, 가비지 컬렉션의 대상
+    * Mark, Sweep, Compact
+    * Young Generation (Eden, S0, S1), Old Generation
+    * Minor GC, Full GC
+    * Throughput, Latency (STW), Footprint
+    * Serial, Parallel, CMS, G1, ZGC, Shenandoah
+  * p33, 초기화 지연 기법
+  * p34, 방어적 복사
 ---
