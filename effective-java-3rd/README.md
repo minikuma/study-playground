@@ -124,4 +124,10 @@ Effective Java 인프런 백기선님, 강의와 Effective Java 3판 책을 스�
 * 어떤 객체에 대한 레퍼런스가 남아 있다면 해당 객체는 GC 대상이 된다.
 * 자기 메모리를 직접 관리하는 경우라면 메모리 누수에 주의해야 한다. (예) 스택, 캐시, 리스너 등
 * 참조 객체를 ```null``` 처리하는 경우는 예외적이며 좋은 방법은 유효 범위 밖으로 밀어내는 것이다.
+* 책에서는 어떻게 나와 있을까?
+  * p37 NullPointException
+  * p38 WeakHashMap
+    * 약한 참조 (weak reference)
+  * p39 백 그라운드 스레드
+    * ScheduledThreadPoolExecutor
 ---
