@@ -23,4 +23,12 @@ public final class Util {
     public static Faker faker() {
         return FAKER;
     }
+
+    public static void sleepSeconds(int millisSeconds) {
+        try {
+            Thread.sleep(millisSeconds);
+        } catch (InterruptedException ie) {
+            ie.printStackTrace();
+        }
+    }
 }
