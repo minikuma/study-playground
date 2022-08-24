@@ -20,4 +20,7 @@
       * 수식(Expression)이지 서술(Statement)는 아니다.
       * 수식(Expression): 하나 이상의 값으로 표현되는 코드
       * 서술(Statement): 프로그램내에서 실행 가능한 최소 단위의 코드 조각
+    *  ````when````
+    * `````loops`````
+  * Functions
 ---
