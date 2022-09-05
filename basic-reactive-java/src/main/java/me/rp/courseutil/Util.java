@@ -26,7 +26,7 @@ public final class Util {
 
     public static void sleepSeconds(int millisSeconds) {
         try {
-            Thread.sleep(millisSeconds);
+            Thread.sleep(millisSeconds * 1000L);
         } catch (InterruptedException ie) {
             ie.printStackTrace();
         }
