@@ -11,7 +11,7 @@ public class Lec02FluxCreateRefactoring {
         Flux.create(nameProducer)
                 .subscribe(Util.subscriber());
 
-        Runnable runnable = () -> nameProducer.produce();
+        Runnable runnable = nameProducer::produce;
 
         // 별도의 스레드에 produce 한다.
         for (int i = 0; i < 10; i++) {
