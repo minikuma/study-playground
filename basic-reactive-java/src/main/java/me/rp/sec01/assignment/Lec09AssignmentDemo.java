@@ -7,7 +7,7 @@ public class Lec09AssignmentDemo {
         FileService.read("file01.txt")
                 .subscribe(Util.onNext(), Util.onError(), Util.onCompleted());
 
-        FileService.write("file03.txt", "This is file03")
+        FileService.write("file01.txt", "This is file03")
                 .subscribe(Util.onNext(), Util.onError(), Util.onCompleted());
 
         FileService.delete("file01.txt")
