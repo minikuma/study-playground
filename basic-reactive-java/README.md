@@ -18,4 +18,11 @@
 * ```Generate```
   * ```Consumer<SynchronousSink<T>>```
   * Consumer 는 오직 하나의 요소를 전달할 수 있음(만약 더 많은 아이템을 받기를 원한다면 새로운 인스턴스 생성해야 함)
+
+(Sec06) Operators
+* Decorators
+* 마치 커피를 만드는 과정과 비슷하다. 커피라는 기본 위에 여러 가지 우유, 휘핑크림, 아이스크림등과 같은것들을 추가하여 여러가지 맛을 내는 커피를 만들어 낼 수 있다.
+* features
+  * Handle
+
 ---
