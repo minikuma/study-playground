@@ -35,4 +35,9 @@
             * ```kotlin.text.*```
             * ```java.lang.*```
             * ```kotlin.jvm.*```
+* OOP
+  * Classes
+  * Objects
+  * Interfaces
+  * Generics
 ---
