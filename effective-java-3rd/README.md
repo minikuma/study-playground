@@ -128,6 +128,9 @@ Effective Java 인프런 백기선님, 강의와 Effective Java 3판 책을 스�
   * p37 NullPointException
   * p38 WeakHashMap
     * 약한 참조 (weak reference)
+    * key 가 더 이상 strong reference 가 없다면 해당 엔트리를 제거한다.
+    * key 가 중요한 경우에 사용한다.(value 도 같이 제거됨)
+    * 캐시를 구현하는 데에 사용할 수 있지만 직접 구현은 권장하지 않는다.
   * p39 백 그라운드 스레드
     * ScheduledThreadPoolExecutor
 ---
