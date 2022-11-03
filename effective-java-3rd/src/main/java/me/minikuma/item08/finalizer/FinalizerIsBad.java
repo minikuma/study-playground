@@ -1,8 +1,8 @@
 package me.minikuma.item08.finalizer;
 
-public class FinalizersBad {
+public class FinalizerIsBad {
     @Override
-    protected void finalize() throws Throwable {
+    protected void finalize() {
         System.out.println("");
     }
 }
