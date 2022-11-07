@@ -140,7 +140,10 @@ Effective Java 인프런 백기선님, 강의와 Effective Java 3판 책을 스�
 * finalizer 와 cleaner 는 심각한 성능 문제가 있다.
 * finalizer 는 보안 문제가 있다.
 * 반납할 자원이 있는 클래스는 ```AutoCloseable``` 을 구현하고 클라이언트에서 ```close()``` 를 호출하거나 ```try-with-resource``` 를 사용해야 한다.
-
+* p42, Finalizer 공격
+* p43, AutoClosable
+* p45, 정적이 아닌 중첩 클래스는 자동으로 바깥 객체의 참조를 가진다.
+* p45, 람다 역시 바깥 객체의 참조를 갖기 쉽다.
 
 
 ---
