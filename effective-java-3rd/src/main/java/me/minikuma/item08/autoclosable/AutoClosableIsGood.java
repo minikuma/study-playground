@@ -2,7 +2,6 @@ package me.minikuma.item08.autoclosable;
 
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
@@ -27,11 +26,12 @@ public class AutoClosableIsGood implements AutoCloseable {
     }
 
     @Override
-    public void close() throws Exception {
+    public void close() {
         try {
             System.out.println("Input Stream Resource closed");
             inputStream.close();
         } catch (IOException ie) {
+            // 에러 변환
             throw new RuntimeException("Failed to close " + inputStream);
         }
     }
