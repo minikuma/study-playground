@@ -151,5 +151,19 @@ Effective Java 인프런 백기선님, 강의와 Effective Java 3판 책을 스�
 * try-with-resources 를 사용하면 코드가 더 짧고 간결하다.
 * 만들어지는 예외 정보도 명확하다.
 
+(10) equals 는 일반 규약을 지켜 재 정의 하라. (equals 는 재 정의 하지 않는 것이 최선)
+* 재 정의 필요 없는 경우
+  * 각 인스턴스는 본질적으로 고유하다. (예) singleton, enum
+  * 논리적인 동치성(value 가 같은가)을 검사할 필요가 없는 경우 (예) 문자열
+  * 상위 클래스에 이미 정의한 경우 (예) ```list```, ```set```
+  * 클래스가 private 이거나, package-private 이고 equals 를 호출할 일이 없는 경우
+* 정의가 필요할 때 어떻게 정의해야 하는가?
+  * equals 규약
+    * 반사성: ```A.equals(A) == true``` (내가 같은 지 확인)
+    * 대칭성: ```A.equals(B) == B.equals(A)``` (CaseInsensitiveString)
+    * 추이성
+    * 일관성
+    * ```null``` 이 아님
+
 
 ---
