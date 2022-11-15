@@ -2,7 +2,7 @@ package me.minikuma.item10.point;
 
 public class Point {
     private final int x;
-    public final int y;
+    private final int y;
 
     public Point(int x, int y) {
         this.x = x;
