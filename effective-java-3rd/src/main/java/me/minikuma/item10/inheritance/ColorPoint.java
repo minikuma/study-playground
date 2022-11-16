@@ -20,8 +20,6 @@ public class ColorPoint extends Point {
 //    }
 
     // 추이성 위배 (57쪽)
-
-
     @Override
     public boolean equals(Object o) {
         // Point 타입이 아닌 경우 필터링

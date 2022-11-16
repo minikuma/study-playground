@@ -8,7 +8,7 @@ public class CounterPointTest {
 
     private static final Set<Point> unitCircle = Set.of(
             new Point(1, 0), new Point(0, 1)
-            ,new Point(2,1), new Point(1,2));
+            ,new Point(-1,0), new Point(0,-1));
 
     public static boolean onUnitCircle(Point p) {
         return unitCircle.contains(p);
@@ -18,7 +18,10 @@ public class CounterPointTest {
         Point p1 = new Point(1, 0);
         Point p2 = new CounterPoint(1, 0);
 
-        System.out.println(onUnitCircle(p1));
-        System.out.println(onUnitCircle(p2));
+        boolean b = onUnitCircle(p1);
+        boolean b1 = onUnitCircle(p2);
+
+        System.out.println(b);
+        System.out.println(b1);
     }
 }

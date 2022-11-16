@@ -9,12 +9,26 @@ public class Point {
         this.y = y;
     }
 
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) {
+//            return true;
+//        }
+//        // 유입된 객체 타입이 Point 인지 확인
+//        if (!(o instanceof Point)) {
+//            return false;
+//        }
+//        Point p = (Point) o;
+//        return p.x == x && p.y == y;
+//    }
+
+    // 코드 10-4 잘못된 코드 - 리스코프 치환 (59쪽) 위배
     @Override
-    public boolean equals(Object obj) {
-        if (!(obj instanceof Point)) {
+    public boolean equals(Object o) {
+        if (o == null || o.getClass() != getClass()) {
             return false;
         }
-        Point p = (Point) obj;
+        Point p = (Point) o;
         return p.x == x && p.y == y;
     }
 }
