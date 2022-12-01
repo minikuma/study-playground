@@ -1,7 +1,7 @@
 package me.minikuma.item10.inheritance;
 
-import me.minikuma.item10.color.Color;
-import me.minikuma.item10.point.Point;
+import me.minikuma.item10.Color;
+import me.minikuma.item10.Point;
 
 public class ColorPoint extends Point {
     private final Color color;
@@ -38,9 +38,9 @@ public class ColorPoint extends Point {
 
     public static void main(String[] args) {
         // 대칭성 위배
-        Point point = new Point(1, 2);
-        ColorPoint cp = new ColorPoint(1, 2, Color.RED);
-        System.out.println(point.equals(cp) + " " + cp.equals(point));
+//        Point point = new Point(1, 2);
+//        ColorPoint cp = new ColorPoint(1, 2, Color.RED);
+//        System.out.println(point.equals(cp) + " " + cp.equals(point));
 
         // 추이성 위배
         ColorPoint p1 = new ColorPoint(1, 2, Color.RED);
