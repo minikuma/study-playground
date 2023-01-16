@@ -16,7 +16,7 @@ public class Lec02HandleAssignment {
         }).map(Object::toString)
         .handle((s, synchronousSink) -> {
             synchronousSink.next(s);
-            if (s.toLowerCase().equals("canada")) {
+            if (s.equalsIgnoreCase("canada")) {
                 synchronousSink.complete();
             }
         })
