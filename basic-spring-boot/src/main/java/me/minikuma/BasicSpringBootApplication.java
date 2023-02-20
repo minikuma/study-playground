@@ -1,15 +1,17 @@
 package me.minikuma;
 
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
-import org.springframework.boot.web.server.WebServer;
 import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
 @Configuration
+@ComponentScan
 public class BasicSpringBootApplication {
+    /* Bean 제거 후 컴포넌트 스캔 활용
     @Bean
     public HelloController helloController(HelloService helloService) {
         return new HelloController(helloService);
@@ -18,32 +20,22 @@ public class BasicSpringBootApplication {
     @Bean
     public HelloService helloService() {
         return new SimpleHelloService();
+    }*/
+
+    @Bean
+    public ServletWebServerFactory servletWebServerFactory() {
+        return new TomcatServletWebServerFactory();
+    }
+
+    @Bean
+    public DispatcherServlet dispatcherServlet() {
+        return new DispatcherServlet();
     }
 
     public static void main(String[] args) {
         // Spring Container 생성
-        AnnotationConfigWebApplicationContext applicationContext = new AnnotationConfigWebApplicationContext() {
-            // 기능 확장
-            @Override
-            protected void onRefresh() {
-                super.onRefresh();
-                // 디스패치서블릿 등록 작업
-                ServletWebServerFactory serverFactory = new TomcatServletWebServerFactory();
-
-                WebServer webServer = serverFactory.getWebServer(servletContext -> {
-                    servletContext.addServlet("dispatcherServlet",
-                                    new DispatcherServlet(this))
-                            .addMapping("/*");
-                });
-
-                webServer.start();
-            }
-        };
-
-        // applicationContext.registerBean(HelloController.class);
-        // applicationContext.registerBean(SimpleHelloService.class);
-        applicationContext.register(BasicSpringBootApplication.class);
-        applicationContext.refresh();
+        //MySpringApplication.run(BasicSpringBootApplication.class, args);
+        SpringApplication.run(BasicSpringBootApplication.class, args);
 
 //[DispatcherServlet 적용을 위한 코드 정리]
 //        WebServer webServer = serverFactory.getWebServer(new ServletContextInitializer() {
