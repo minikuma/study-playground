@@ -1,3 +1,4 @@
 me.config.autoconfig.DispatcherServletConfig
 me.config.autoconfig.TomcatWebServerConfig
 me.config.autoconfig.JettyWebServerConfig
+me.config.autoconfig.UndertowWebServerConfig
