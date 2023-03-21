@@ -4,3 +4,4 @@ me.config.autoconfig.JettyWebServerConfig
 me.config.autoconfig.UndertowWebServerConfig
 me.config.autoconfig.PropertyPlaceHolderConfig
 me.config.autoconfig.PropertyPostProcessorConfig
+me.config.autoconfig.DataSourceConfig
