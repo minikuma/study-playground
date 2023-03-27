@@ -7,6 +7,7 @@ import me.config.MyAutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnSingleCandidate;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 import org.springframework.jdbc.support.JdbcTransactionManager;
@@ -20,6 +21,18 @@ import java.sql.Driver;
 @EnableMyConfigurationProperties(MyDataSourceProperties.class)
 @EnableTransactionManagement
 public class DataSourceConfig {
+    @Bean
+    @ConditionalOnMissingBean
+    public DataSource hikariDataSource(MyDataSourceProperties properties) {
+        HikariDataSource hikariDataSource = new HikariDataSource();
+
+        hikariDataSource.setJdbcUrl(properties.getUrl());
+        hikariDataSource.setUsername(properties.getUsername());
+        hikariDataSource.setPassword(properties.getPassword());
+
+        return hikariDataSource;
+    }
+
     @Bean
     @ConditionalMyOnClass("com.zaxxer.hikari.HikariDataSource")
     @ConditionalOnMissingBean
@@ -35,18 +48,6 @@ public class DataSourceConfig {
     }
 
     @Bean
-    @ConditionalOnMissingBean
-    public DataSource hikariDataSource(MyDataSourceProperties properties) {
-        HikariDataSource hikariDataSource = new HikariDataSource();
-
-        hikariDataSource.setJdbcUrl(properties.getUrl());
-        hikariDataSource.setUsername(properties.getUsername());
-        hikariDataSource.setPassword(properties.getPassword());
-
-        return hikariDataSource;
-    }
-
-    @Bean
     @ConditionalOnSingleCandidate(DataSource.class)
     @ConditionalOnMissingBean
     public JdbcTemplate jdbcTemplate(DataSource dataSource) {
@@ -54,6 +55,7 @@ public class DataSourceConfig {
     }
 
     @Bean
+    @Primary
     @ConditionalOnSingleCandidate(DataSource.class)
     @ConditionalOnMissingBean
     public JdbcTransactionManager jdbcTransactionManager(DataSource dataSource) {

@@ -3,8 +3,6 @@ package me.minikuma;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Objects;
-
 @RestController
 public class HelloController {
     private final HelloService helloService;
@@ -20,5 +18,10 @@ public class HelloController {
             throw new IllegalArgumentException("Invalid Parameter");
         }
         return helloService.sayHello(name);
+    }
+
+    @GetMapping("/count")
+    public String helloCount(String name) {
+        return  name + " : " + helloService.countOf(name);
     }
 }

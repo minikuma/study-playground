@@ -8,7 +8,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
@@ -25,11 +25,23 @@ import static org.assertj.core.api.Assertions.*;
 class HelloServiceTest {
     @UnitTest
     void simpleHelloService() {
-        SimpleHelloService simpleHelloService = new SimpleHelloService();
+        SimpleHelloService simpleHelloService = new SimpleHelloService(helloRepositoryStub);
         String res = simpleHelloService.sayHello("Test");
 
         assertThat(res).isEqualTo("Hello Test");
     }
+
+    private static final HelloRepository helloRepositoryStub = new HelloRepository() {
+        @Override
+        public Members findMembers(String name) {
+            return null;
+        }
+
+        @Override
+        public void increase(String name) {
+
+        }
+    };
 
     @Test
     @DisplayName("Decorator Test")
