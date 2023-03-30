@@ -1,7 +1,5 @@
 ## My Spring Boot
 
----
-
 ### Introduce   
 * Spring Boot 원리 이해를 위해 직접 Spring Boot 주요 기능들을 직접 코드로 구현하는 예제
 * 인프런 강의 (토비의 스프링 부트)
