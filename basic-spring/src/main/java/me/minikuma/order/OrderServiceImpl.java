@@ -13,8 +13,8 @@ public class OrderServiceImpl implements OrderService {
     private final DiscountPolicy discountPolicy;
 
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
-        this.memberRepository = new MemoryMemberRepository();
-        this.discountPolicy = new FixDiscountPolicy();
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
     }
 
     @Override
