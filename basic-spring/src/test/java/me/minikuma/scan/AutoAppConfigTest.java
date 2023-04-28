@@ -3,19 +3,17 @@ package me.minikuma.scan;
 import me.minikuma.config.AutoAppConfig;
 import me.minikuma.member.MemberService;
 import me.minikuma.member.MemberServiceImpl;
-import me.minikuma.order.OrderServiceImpl;
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
-import java.util.Map;
 
 public class AutoAppConfigTest {
     @Test
+    @DisplayName("기본 컴포넌트 스캔 테스트")
     void basicComponentScan() {
         AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(AutoAppConfig.class);
-        System.out.println(ac);
-        OrderServiceImpl orderService = ac.getBean(OrderServiceImpl.class);
-        System.out.println(orderService);
+        MemberService memberService = ac.getBean(MemberService.class);
+        Assertions.assertThat(memberService).isInstanceOf(MemberServiceImpl.class);
     }
 }
