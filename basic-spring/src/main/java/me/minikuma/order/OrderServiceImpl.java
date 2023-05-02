@@ -1,9 +1,9 @@
 package me.minikuma.order;
 
+import me.minikuma.annotation.MainDiscountPolicy;
 import me.minikuma.discount.DiscountPolicy;
 import me.minikuma.member.Member;
 import me.minikuma.member.MemberRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -13,8 +13,7 @@ public class OrderServiceImpl implements OrderService {
     // 할인 정보
     private final DiscountPolicy discountPolicy;
 
-    @Autowired
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+    public OrderServiceImpl(MemberRepository memberRepository, @MainDiscountPolicy DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
     }

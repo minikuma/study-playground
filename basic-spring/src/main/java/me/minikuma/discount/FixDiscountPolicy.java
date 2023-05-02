@@ -2,7 +2,9 @@ package me.minikuma.discount;
 
 import me.minikuma.member.Grade;
 import me.minikuma.member.Member;
+import org.springframework.stereotype.Component;
 
+@Component
 public class FixDiscountPolicy implements DiscountPolicy {
     private final int discountFixAmount = 1000;
 

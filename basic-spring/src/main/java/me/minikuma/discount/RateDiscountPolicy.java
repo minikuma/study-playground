@@ -1,10 +1,12 @@
 package me.minikuma.discount;
 
+import me.minikuma.annotation.MainDiscountPolicy;
 import me.minikuma.member.Grade;
 import me.minikuma.member.Member;
 import org.springframework.stereotype.Component;
 
 @Component
+@MainDiscountPolicy
 public class RateDiscountPolicy implements DiscountPolicy {
 
     private final int discountPercent = 10;
