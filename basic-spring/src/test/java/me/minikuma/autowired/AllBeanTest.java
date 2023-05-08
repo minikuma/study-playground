@@ -13,7 +13,7 @@ import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class AllBeanTest {
+class AllBeanTest {
     @Test
     @DisplayName("클라이언트에서 할인율을 정해서 호출하는 경우(동적으로 빈을 생성해야 하는 경우")
     void findAllBeans() {

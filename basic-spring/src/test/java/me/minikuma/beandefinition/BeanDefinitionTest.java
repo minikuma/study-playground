@@ -1,13 +1,16 @@
 package me.minikuma.beandefinition;
 
 import me.minikuma.beanfind.TestConfig;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 
-public class BeanDefinitionTest {
+import static org.assertj.core.api.Assertions.*;
+
+class BeanDefinitionTest {
     AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(TestConfig.class);
     GenericXmlApplicationContext xmlAc = new GenericXmlApplicationContext("appConfig.xml");
     @Test
@@ -19,6 +22,7 @@ public class BeanDefinitionTest {
 
             if (beanDefinition.getRole() == BeanDefinition.ROLE_APPLICATION) {
                 System.out.println("beanDefinitionName = " + beanDefinitionName + " beanDefinition = " + beanDefinition);
+                assertThat(beanDefinition).isNotNull();
             }
         }
     }
@@ -32,6 +36,7 @@ public class BeanDefinitionTest {
 
             if (beanDefinition.getRole() == BeanDefinition.ROLE_APPLICATION) {
                 System.out.println("beanDefinitionName = " + beanDefinitionName + " beanDefinition = " + beanDefinition);
+                assertThat(beanDefinition).isNotNull();
             }
         }
     }
