@@ -1,8 +1,8 @@
 package me.minikuma.scope;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Scope;
@@ -10,34 +10,35 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import javax.inject.Provider;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.beans.factory.config.ConfigurableBeanFactory.SCOPE_PROTOTYPE;
 import static org.springframework.beans.factory.config.ConfigurableBeanFactory.SCOPE_SINGLETON;
 
-class PrototypeProviderTest {
-
+class ProviderTest {
     @Test
-    @DisplayName("프로바이더를 사용한 빈 스코프 차이 해결")
+    @DisplayName("Provider 인터페이스를 활용하여 DL 테스트 (JSR 330)")
     void providerTest() {
         AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(ClientBean.class, PrototypeBean.class);
-        ClientBean clientBean1 = ac.getBean(ClientBean.class);
-        int clientCount1 = clientBean1.logic();
-        assertThat(clientCount1).isEqualTo(1);
 
-        ClientBean clientBean2 = ac.getBean(ClientBean.class);
-        int clientCount2 = clientBean2.logic();
-        assertThat(clientCount2).isEqualTo(1);
+        ClientBean cb = ac.getBean(ClientBean.class);
+        int countClientBean = cb.logic();
+        System.out.println("countClientBean = " + countClientBean);
+
+        ClientBean pb = ac.getBean(ClientBean.class);
+        int count = pb.logic();
+        System.out.println("count = " + count);
+        Assertions.assertThat(countClientBean).isEqualTo(count);
     }
 
     @Component
     @Scope(SCOPE_SINGLETON)
     static class ClientBean {
         @Autowired
-        private ObjectProvider<PrototypeBean> prototypeBeans;
+        private Provider<PrototypeBean> prototypeBean;
 
         public int logic() {
-            PrototypeBean prototypeBean = prototypeBeans.getObject();
+            PrototypeBean prototypeBean = this.prototypeBean.get();
             prototypeBean.addCount();
             return prototypeBean.getCount();
         }
@@ -46,19 +47,21 @@ class PrototypeProviderTest {
     @Component
     @Scope(SCOPE_PROTOTYPE)
     static class PrototypeBean {
-        private int count  = 0;
+        private int count = 0;
 
+        // add count
         public void addCount() {
-            count++;
+            this.count++;
         }
 
+        // 조회
         public int getCount() {
             return this.count;
         }
 
         @PostConstruct
         public void init() {
-            System.out.println("PrototypeBean.init "  + this);
+            System.out.println("PrototypeBean.init");
         }
 
         @PreDestroy
