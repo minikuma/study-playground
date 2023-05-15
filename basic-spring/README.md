@@ -20,5 +20,15 @@
 (2) 의존관계주입
 - [x] 다양한 의존관계 주입 (생성자, 필드, ```setter```, 일반 메서드)
 - [x] ```@Autowired```, ```@Quilified```, ```@Primary``` (Type > Field > Parameter 순으로 탐색)
+- [x] 조회 빈이 여러 개인 경우
+- [x] 조회한 빈이 모두 필요한 경우
 
+(3) 빈 생명 주기
+- [x] 초기화, 소멸 (```InitializingBean```, ```DisposableBean```)
+- [x] 애노테이션 활용 (```@PostConstruct```, ```@PreDestroy```)
+
+(4) 빈 스코프
+- [x] 빈 스코프 종류 (singleton, prototype)
+- [x] singleton, prototype 함께 사용하는 경우 문제 (Provider, Proxy)
+- [x] request 스코프
 ---
