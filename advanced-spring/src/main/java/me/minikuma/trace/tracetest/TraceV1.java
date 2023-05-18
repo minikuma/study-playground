@@ -1,6 +1,7 @@
 package me.minikuma.trace.tracetest;
 
 import lombok.extern.slf4j.Slf4j;
+import me.minikuma.trace.Prefix;
 import me.minikuma.trace.TraceId;
 import me.minikuma.trace.TraceStatus;
 import org.springframework.stereotype.Component;

@@ -1,4 +1,4 @@
-package me.minikuma.trace.tracetest;
+package me.minikuma.trace;
 
 public enum Prefix {
     START_PREFIX("-->"),
