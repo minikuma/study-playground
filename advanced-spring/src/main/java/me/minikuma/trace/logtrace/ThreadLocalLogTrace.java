@@ -1,35 +1,28 @@
 package me.minikuma.trace.logtrace;
 
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j2;
 import me.minikuma.trace.Prefix;
 import me.minikuma.trace.TraceId;
 import me.minikuma.trace.TraceStatus;
 
-@Slf4j
-public class FieldLogTrace implements LogTrace {
+@Log4j2
+public class ThreadLocalLogTrace implements LogTrace {
 
-    // TraceId 동기화, 동시성 이슈 발생
-    private TraceId traceIdHolder;
-
-    private void syncTranceId() {
-        if (traceIdHolder == null) {
-            this.traceIdHolder = new TraceId();
-        } else {
-            this.traceIdHolder = traceIdHolder.createNextId();
-        }
-    }
+    // Thread Local
+    private final ThreadLocal<TraceId> traceHolder = new ThreadLocal<>();
 
     @Override
     public TraceStatus begin(String message) {
+        syncTraceId();
 
-        syncTranceId();
+        TraceId traceId = traceHolder.get();
 
         // 시간 정보
         Long startTimeMs = System.currentTimeMillis();
         // 출력
-        log.info("[{}] {}{}", traceIdHolder.getId(), addSpace(Prefix.START_PREFIX.getValue(), traceIdHolder.getLevel()), message);
+        log.info("[{}] {}{}", traceId.getId(), addSpace(Prefix.START_PREFIX.getValue(), traceId.getLevel()), message);
 
-        return new TraceStatus(traceIdHolder, startTimeMs, message);
+        return new TraceStatus(traceId, startTimeMs, message);
     }
 
     @Override
@@ -42,11 +35,23 @@ public class FieldLogTrace implements LogTrace {
         complete(status, e);
     }
 
-    private void complete(TraceStatus status, Exception e) {
+    public void syncTraceId() {
+        TraceId traceId = traceHolder.get();
+
+        // 스레드 로컬에 값이 존재하지 않는 경우 (스레드 로컬에 등록)
+        if (traceId == null) {
+            traceHolder.set(new TraceId());
+        } else {
+            // 존재하는 경우 다음 trade id로 등록
+            traceHolder.set(traceId.createNextId());
+        }
+    }
+
+    public void complete(TraceStatus status, Exception e) {
         Long stopTimeMs = System.currentTimeMillis();
         Long elapsedTime = stopTimeMs - status.getStartTimeMs();
 
-        TraceId traceId = status.getTraceId();
+        TraceId traceId = traceHolder.get();
 
         if (e == null) {
             log.info("[{}] {}{} time={} ms", traceId.getId(), addSpace(Prefix.COMPLETE_PREFIX.getValue(), traceId.getLevel()), status.getMessage(), elapsedTime);
@@ -58,12 +63,15 @@ public class FieldLogTrace implements LogTrace {
     }
 
     private void releaseTraceId() {
-        // 첫번째 레벨은 객체 관계를 정리해 준다.
-        if (traceIdHolder.isFirstLevel()) {
-            this.traceIdHolder = null;
+        TraceId traceId = traceHolder.get();
+
+        // 레벨이 0 (첫번째 레벨)인 경우
+        if (traceId.isFirstLevel()) {
+            // 하나의 트랜젝션이 끝남 > 다음 로그를 위해 스레드 로컬 remove
+            traceHolder.remove();
         } else {
-            // 첫번째 레벨이 아닌 경우 이런 레벨로 교체
-            this.traceIdHolder = traceIdHolder.createPrevId();
+            // 첫 번째가 아닌 경우 레벨 -1 해준다.
+            traceHolder.set(traceId.createPrevId());
         }
     }
 

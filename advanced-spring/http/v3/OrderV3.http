@@ -1,6 +1,6 @@
 ### 주문하기
-POST http://localhost:8080/v3/request?itemId=100
+GET http://localhost:8080/v3/request?itemId=100
 
 
 ### 주문하기 (예외) itemId 가 "ex"인 경우
-POST http://localhost:8080/v3/request?itemId=ex
+GET http://localhost:8080/v3/request?itemId=ex

@@ -3,8 +3,8 @@ package me.minikuma.trace;
 import java.util.UUID;
 
 public class TraceId {
-    private String id;
-    private int level;
+    private final String id;
+    private final int level;
 
     // 초기화
     public TraceId() {
