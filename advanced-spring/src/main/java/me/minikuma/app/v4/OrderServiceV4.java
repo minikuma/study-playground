@@ -1,7 +1,6 @@
 package me.minikuma.app.v4;
 
 import lombok.RequiredArgsConstructor;
-import me.minikuma.trace.TraceStatus;
 import me.minikuma.trace.logtrace.LogTrace;
 import me.minikuma.trace.template.AbstractTemplate;
 import org.springframework.stereotype.Service;

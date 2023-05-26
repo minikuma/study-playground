@@ -63,6 +63,4 @@ class TemplateMethodTest {
         long elapsedTime = endTime - startTime;
         log.info("경과 시간 = {}", elapsedTime);
     }
-
-
 }
