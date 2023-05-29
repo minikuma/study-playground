@@ -19,12 +19,66 @@ class ContextV1Test {
 
     @Test
     @DisplayName("전략 패턴 - 인터페이스 도입")
-    void StrategyV1() {
+    void strategyV1() {
         ContextV1 context1 = new ContextV1(new StrategyLogic1());
         context1.execute();
 
         ContextV1 context2 = new ContextV1(new StrategyLogic2());
         context2.execute();
+    }
+
+    @Test
+    @DisplayName("전략 패턴 - 익명 내부 클래스 (1)")
+    void strategyV2() {
+        Strategy strategy1 = new Strategy() {
+            @Override
+            public void call() {
+                log.info("비즈니스 로직 - 1 실행 (익명 내부 클래스)");
+            }
+        };
+        ContextV1 context1 = new ContextV1(strategy1);
+        context1.execute();
+
+        Strategy strategy2 = new Strategy() {
+            @Override
+            public void call() {
+                log.info("비즈니스 로직 - 2 실행 (익명 내부 클래스)");
+            }
+        };
+        ContextV1 context2 = new ContextV1(strategy2);
+        context2.execute();
+    }
+
+    @Test
+    @DisplayName("전략 패턴 - 익명 내부 클래스 (2)")
+    void strategyV3() {
+        ContextV1 context1 = new ContextV1(new Strategy() {
+            @Override
+            public void call() {
+                log.info("비즈니스 로직 - 1 실행 (익명 내부 클래스)");
+            }
+        });
+        context1.execute();
+
+        ContextV1 context2 = new ContextV1(new Strategy() {
+            @Override
+            public void call() {
+                log.info("비즈니스 로직 - 2 실행 (익명 내부 클래스)");
+            }
+        });
+        context2.execute();
+    }
+
+    @Test
+    @DisplayName("전략 패턴 - 익명 내부 클래스 (람다)")
+    void strategyV4() {
+        new ContextV1(() -> {
+            log.info("비즈니스 로직 - 1 실행");
+        }).execute();
+
+        new ContextV1(() -> {
+            log.info("비즈니스 로직 - 2 실행");
+        }).execute();
     }
 
     private void logic1() {
