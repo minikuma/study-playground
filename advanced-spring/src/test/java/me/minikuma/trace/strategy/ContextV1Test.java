@@ -1,10 +1,10 @@
 package me.minikuma.trace.strategy;
 
 import lombok.extern.slf4j.Slf4j;
-import me.minikuma.trace.strategy.code.ContextV1;
-import me.minikuma.trace.strategy.code.Strategy;
-import me.minikuma.trace.strategy.code.StrategyLogic1;
-import me.minikuma.trace.strategy.code.StrategyLogic2;
+import me.minikuma.trace.strategy.code.strategy.ContextV1;
+import me.minikuma.trace.strategy.code.strategy.Strategy;
+import me.minikuma.trace.strategy.code.strategy.StrategyLogic1;
+import me.minikuma.trace.strategy.code.strategy.StrategyLogic2;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
