@@ -13,12 +13,9 @@ public class OrderServiceV5 {
     private final TraceTemplate traceTemplate;
 
     public void orderItem(String itemId) {
-        traceTemplate.execute("OrderService.orderItem()", new TraceCallback<Void>() {
-            @Override
-            public Void call() {
-                orderRepositoryV5.save(itemId);
-                return null;
-            }
+        traceTemplate.execute("OrderService.orderItem()", (TraceCallback<Void>) () -> {
+            orderRepositoryV5.save(itemId);
+            return null;
         });
     }
 }
