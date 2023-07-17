@@ -1,6 +1,6 @@
 package me.minikuma;
 
-import me.minikuma.config.v4_postprocessor.BeanPostProcessorConfig;
+import me.minikuma.config.v5_autoproxy.AutoProxyConfig;
 import me.minikuma.trace.logtrace.LogTrace;
 import me.minikuma.trace.logtrace.ThreadLocalLogTrace;
 import org.springframework.boot.SpringApplication;
@@ -15,7 +15,8 @@ import org.springframework.context.annotation.Import;
 //@Import(ProxyFactoryConfigV1.class)
 //@Import(DynamicProxyFilterConfig.class)
 //@Import(ProxyFactoryConfigV2.class)
-@Import(BeanPostProcessorConfig.class)
+//@Import(BeanPostProcessorConfig.class)
+@Import(AutoProxyConfig.class)
 @SpringBootApplication(scanBasePackages = "me.minikuma.app")
 public class AdvancedSpringProxyApplication {
 
