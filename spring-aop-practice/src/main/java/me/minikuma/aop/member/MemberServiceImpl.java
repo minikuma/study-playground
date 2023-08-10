@@ -1,7 +1,7 @@
-package me.minikuma.aop.order.aop.member;
+package me.minikuma.aop.member;
 
-import me.minikuma.aop.order.aop.member.annotation.ClassAop;
-import me.minikuma.aop.order.aop.member.annotation.MethodAop;
+import me.minikuma.aop.member.annotation.ClassAop;
+import me.minikuma.aop.member.annotation.MethodAop;
 import org.springframework.stereotype.Component;
 
 @ClassAop

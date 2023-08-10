@@ -1,4 +1,4 @@
-package me.minikuma.aop.order.aop.member;
+package me.minikuma.aop.member;
 
 public interface MemberService {
     String hello(String param);
