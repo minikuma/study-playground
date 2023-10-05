@@ -5,6 +5,7 @@ import me.minikuma.connection.DBConnectionUtils;
 import me.minikuma.domain.Member;
 
 import java.sql.*;
+import java.util.NoSuchElementException;
 
 /**
  * JDBC Driver Manager
@@ -39,6 +40,38 @@ public class MemberRepositoryV0 {
             close(conn, pstm, null);
         }
     }
+
+    // 조회
+    public Member findById(String memberId) throws SQLException {
+        String sql = "select * from member where member_id = ?";
+
+        Connection conn = null;
+        PreparedStatement psmt = null;
+        ResultSet rs = null;
+
+        try {
+            conn = DBConnectionUtils.getConnection();
+            psmt = conn.prepareStatement(sql);
+            psmt.setString(1, memberId);
+            rs = psmt.executeQuery();
+
+            if (rs.next()) {
+                Member member = new Member();
+                member.setMemberId(rs.getString("member_id"));
+                member.setMoney(rs.getInt("money"));
+                return member;
+            } else {
+                throw new NoSuchElementException("member not found member id = " + memberId);
+            }
+
+        } catch (SQLException e) {
+            log.error("db 조회 에러", e);
+            throw e;
+        } finally {
+            close(conn, psmt, rs);
+        }
+    }
+
 
     private void close(Connection conn, PreparedStatement pstm, ResultSet rs) {
         if (rs != null) {
