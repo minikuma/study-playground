@@ -72,6 +72,66 @@ public class MemberRepositoryV0 {
         }
     }
 
+    // 수정
+    public void update(String memberId, int money) throws SQLException {
+        String sql = "update member set money = ? where member_id = ?";
+
+        Connection conn = null;
+        PreparedStatement psmt = null;
+
+        try {
+            conn = DBConnectionUtils.getConnection();
+            psmt = conn.prepareStatement(sql);
+            psmt.setInt(1, money);
+            psmt.setString(2, memberId);
+            int resultSize = psmt.executeUpdate(); // row 수 반환
+            log.info("result size = {}", resultSize);
+        } catch (SQLException e) {
+            log.error("DB Update Error!");
+            throw e;
+        } finally {
+            close(conn, psmt, null);
+        }
+    }
+
+    // 조건으로 유입된 회원을 삭제
+    public void delete(String memberId) throws SQLException {
+        String sql = "delete from member where member_id = ?";
+
+        Connection conn = null;
+        PreparedStatement psmt = null;
+
+        try {
+            conn = DBConnectionUtils.getConnection();
+            psmt = conn.prepareStatement(sql);
+            psmt.setString(1, memberId);
+            psmt.executeUpdate();
+        } catch (SQLException e) {
+            log.error("delete error");
+            throw e;
+        } finally {
+            close(conn, psmt, null);
+        }
+    }
+
+    // 테스트를 위한 전체 delete
+    public void deleteAll() throws SQLException {
+        String sql = "delete from member";
+
+        Connection conn = null;
+        PreparedStatement psmt = null;
+
+        try {
+            conn = DBConnectionUtils.getConnection();
+            psmt = conn.prepareStatement(sql);
+            psmt.executeUpdate();
+        } catch (SQLException e) {
+            log.error("delete all Error!");
+            throw e;
+        } finally {
+            close(conn, psmt, null);
+        }
+    }
 
     private void close(Connection conn, PreparedStatement pstm, ResultSet rs) {
         if (rs != null) {
