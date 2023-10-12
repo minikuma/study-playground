@@ -6,19 +6,23 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import java.sql.SQLException;
 import java.util.NoSuchElementException;
 
+import static me.minikuma.connection.ConnectionConst.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
 class MemberRepositoryV0Test {
 
-    MemberRepositoryV0 repository = new MemberRepositoryV0();
+    private MemberRepositoryV0 repository;
 
     @BeforeEach
-    public void init() throws SQLException {
+    public void before() throws SQLException {
+        DriverManagerDataSource dataSource = new DriverManagerDataSource(URL, USERNAME, PASSWORD);
+        repository = new MemberRepositoryV0(dataSource);
         repository.deleteAll();
     }
 

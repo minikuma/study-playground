@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import me.minikuma.connection.DBConnectionUtils;
 import me.minikuma.domain.Member;
 
+import javax.sql.DataSource;
 import java.sql.*;
 import java.util.NoSuchElementException;
 
@@ -13,6 +14,13 @@ import java.util.NoSuchElementException;
 
 @Slf4j
 public class MemberRepositoryV0 {
+
+    private final DataSource dataSource;
+
+    public MemberRepositoryV0(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
+
     public Member save(Member member) throws SQLException {
         // SQL
         String sql = "insert into member(member_id, money) values (?, ?)";
