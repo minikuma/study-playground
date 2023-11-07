@@ -2,6 +2,7 @@ package me.minikuma.repository;
 
 import lombok.extern.slf4j.Slf4j;
 import me.minikuma.domain.Member;
+import me.minikuma.repository.ex.MyDbException;
 import org.springframework.jdbc.datasource.DataSourceUtils;
 import org.springframework.jdbc.support.JdbcUtils;
 
@@ -10,19 +11,23 @@ import java.sql.*;
 import java.util.NoSuchElementException;
 
 /**
- * Transaction Manager 적용
+ * 예외 누수 해결
+ * - 체크 예외를 언체크로 변경
+ * - MemberRepository 사용
+ * - throws SQLException 제거
  */
 
 @Slf4j
-public class MemberRepositoryV3 implements MemberRepositoryEx {
+public class MemberRepositoryV4_1 implements MemberRepository {
 
     private final DataSource dataSource;
 
-    public MemberRepositoryV3(DataSource dataSource) {
+    public MemberRepositoryV4_1(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
-    public Member save(Member member) throws SQLException {
+    @Override
+    public Member save(Member member) {
         // SQL
         String sql = "insert into member(member_id, money) values (?, ?)";
 
@@ -44,14 +49,15 @@ public class MemberRepositoryV3 implements MemberRepositoryEx {
             return member;
         } catch (SQLException e) {
             log.error("db error", e);
-            throw e;
+            throw new MyDbException(e);
         } finally {
             close(conn, pstm, null);
         }
     }
 
     // 조회
-    public Member findById(String memberId) throws SQLException {
+    @Override
+    public Member findById(String memberId) {
         String sql = "select * from member where member_id = ?";
 
         Connection conn = null;
@@ -75,13 +81,14 @@ public class MemberRepositoryV3 implements MemberRepositoryEx {
 
         } catch (SQLException e) {
             log.error("db 조회 에러", e);
-            throw e;
+            throw new MyDbException(e);
         } finally {
             close(conn, psmt, rs);
         }
     }
 
-    public void update(String memberId, int money) throws SQLException {
+    @Override
+    public void update(String memberId, int money) {
         String sql = "update member set money = ? where member_id = ?";
 
         Connection conn = null;
@@ -96,14 +103,15 @@ public class MemberRepositoryV3 implements MemberRepositoryEx {
             log.info("result size = {}", resultSize);
         } catch (SQLException e) {
             log.error("DB Update Error!");
-            throw e;
+            throw new MyDbException(e);
         } finally {
             close(conn, psmt, null);
         }
     }
 
     // 조건으로 유입된 회원을 삭제
-    public void delete(String memberId) throws SQLException {
+    @Override
+    public void delete(String memberId) {
         String sql = "delete from member where member_id = ?";
 
         Connection conn = null;
@@ -116,14 +124,15 @@ public class MemberRepositoryV3 implements MemberRepositoryEx {
             psmt.executeUpdate();
         } catch (SQLException e) {
             log.error("delete error");
-            throw e;
+            throw new MyDbException(e);
         } finally {
             close(conn, psmt, null);
         }
     }
 
     // 테스트를 위한 전체 delete
-    public void deleteAll() throws SQLException {
+    @Override
+    public void deleteAll() {
         String sql = "delete from member";
 
         Connection conn = null;
@@ -135,7 +144,7 @@ public class MemberRepositoryV3 implements MemberRepositoryEx {
             psmt.executeUpdate();
         } catch (SQLException e) {
             log.error("delete all Error!");
-            throw e;
+            throw new MyDbException(e);
         } finally {
             close(conn, psmt, null);
         }
