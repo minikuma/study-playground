@@ -19,7 +19,7 @@ class CheckedTest {
     @DisplayName("체크예외를 던진다.")
     void checked_throw() {
         Service service = new Service();
-        Assertions.assertThatThrownBy(() -> service.callThrow())
+        Assertions.assertThatThrownBy(service::callThrow)
                 .isInstanceOf(MyCheckedException.class);
     }
 

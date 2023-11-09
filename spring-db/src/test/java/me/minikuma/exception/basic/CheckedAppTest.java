@@ -10,7 +10,7 @@ class CheckedAppTest {
     @Test
     void checked() {
         Controller controller = new Controller();
-        Assertions.assertThatThrownBy(() -> controller.request())
+        Assertions.assertThatThrownBy(controller::request)
                 .isInstanceOf(Exception.class);
     }
 

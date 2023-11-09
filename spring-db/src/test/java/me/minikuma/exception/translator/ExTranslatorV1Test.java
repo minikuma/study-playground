@@ -1,4 +1,4 @@
-package me.minikuma.exception;
+package me.minikuma.exception.translator;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -3,8 +3,7 @@ package me.minikuma.service;
 import lombok.extern.slf4j.Slf4j;
 import me.minikuma.domain.Member;
 import me.minikuma.repository.MemberRepository;
-import me.minikuma.repository.MemberRepositoryV4_1;
-import me.minikuma.repository.ex.MyDbException;
+import me.minikuma.repository.MemberRepositoryV5;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -46,7 +45,7 @@ class MemberServiceV4Test {
 
         @Bean
         public MemberRepository memberRepository() {
-            return new MemberRepositoryV4_1(dataSource);
+            return new MemberRepositoryV5(dataSource);
         }
 
         @Bean
